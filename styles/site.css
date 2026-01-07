@@ -1,0 +1,25 @@
+body {
+  background-color: #060B0D;
+}
+
+nav a {
+  border-radius: 10px;
+  border: 2px solid #14151D;
+  padding: 10px 20px;
+  color: white;
+  font-family: 'Heebo', sans-serif;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-items: left;
+  width: fit-content;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  width: 100%;
+  border-bottom: 2px solid #14151D;
+}
