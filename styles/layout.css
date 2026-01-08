@@ -1,0 +1,136 @@
+body {
+  background-color: #060B0D;
+}
+
+#project-container {
+  width: 100%;
+  height: 100%;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  border-radius: 10px;
+  border: 2px solid #14151D;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-items: left;
+  width: fit-content;
+  margin-right: 10px;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  width: 100%;
+  border-bottom: 2px solid #14151D;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#sort-by {
+  border: 2px solid #14151D;
+  border-radius: 10px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+#sort-by button {
+  background-color: transparent;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.project-content > div {
+  color: white;
+  min-width: 250px;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#border::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(
+    farthest-corner at var(--mouse-x) var(--mouse-y)
+  )
+}
+
+#border > div {
+  background-color: #060B0D;
+  margin: 2px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.project {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.project-content {
+  background-color: #060B0D;
+  margin: 1px;
+  padding: 10px;
+  border-radius: inherit;
+
+.project-content > img {
+  position: relative;
+  border-radius: 10px;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: auto;
+}
+
+.projects img::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    to right,
+    #060B0D 0%,
+    transparent 35%
+  );
+  pointer-events: none;
+}
+
+#description {
+  width: 90%;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+}
+
+#description * {
+  line-height: 0;
+}
