@@ -5,6 +5,7 @@
     "description": "A very polished feeling hover effect.",
     "source": "https://codepen.io/Hyperplexed/pen/MWQeYLW?editors=0010",
     "path": "../demos/mouse-border-glow/index.html",
-    "type": "hover"
+    "type": "hover",
+    "img": "../images/mouse-border-glow.png"
   }
 ]
