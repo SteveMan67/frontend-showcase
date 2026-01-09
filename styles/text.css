@@ -1,8 +1,10 @@
 body {
   font-family: 'Heebo', sans-serif;
+  color: white;
 }
 
 nav a {
   color: white;
   text-decoration: none;
 }
+

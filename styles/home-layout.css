@@ -1,39 +1,27 @@
 body {
-  background-color: #060B0D;
+  position: relative;
+}
+
+body::after {
+  content: '';
+  background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y),
+    rgba(225, 225, 255, 0.02) 0%, transparent 100%
+  );
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 #project-container {
   width: 100%;
   height: 100%;
-  margin-top: 100px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-nav a {
-  border-radius: 10px;
-  border: 2px solid #14151D;
-  padding: 10px 20px;
-  display: flex;
-  flex-direction: row;
-  justify-items: left;
-  width: fit-content;
-  margin-right: 10px;
-}
-
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 10px;
-  width: 100%;
-  border-bottom: 2px solid #14151D;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
 #sort-by {
   border: 2px solid #14151D;
@@ -54,8 +42,10 @@ nav {
 #projects {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   column-gap: 20px;
   row-gap: 20px;
+  background-color: transparent;
 }
 
 .project-content > div {
@@ -68,17 +58,6 @@ nav {
   align-items: center;
 }
 
-#border::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: radial-gradient(
-    farthest-corner at var(--mouse-x) var(--mouse-y)
-  )
-}
-
 #border > div {
   background-color: #060B0D;
   margin: 2px;
@@ -89,13 +68,17 @@ nav {
 .project {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
+  position: relative;
 }
 
 .project-content {
   background-color: #060B0D;
-  margin: 1px;
+  margin: 2px;
+  z-index: 3;
   padding: 10px;
   border-radius: inherit;
+  position: relative;
+}
 
 .project-content > img {
   position: relative;
@@ -104,6 +87,7 @@ nav {
   background-repeat: no-repeat;
   background-size: cover;
   height: auto;
+  z-index: 4
 }
 
 .projects img::after {
@@ -119,6 +103,26 @@ nav {
     transparent 35%
   );
   pointer-events: none;
+}
+
+.project::before, .project::after {
+  content: '';
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.project::before {
+  z-index: 1;
+  background: radial-gradient(200px circle at var(--mouse-projects-x) var(--mouse-projects-y), rgba(255, 255, 255, 0.2) 0%, transparent 100%)
+}
+
+.project::after {
+  /* z-index: 3;
+  background: radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.02) 0%, transparent 100%) */
 }
 
 #description {
