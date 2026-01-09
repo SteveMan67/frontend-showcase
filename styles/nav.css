@@ -10,7 +10,7 @@ nav a {
 }
 
 nav {
-  padding: 10px;
+  padding: 10px 0;
   width: 100%;
   border-bottom: 2px solid #14151D;
   display: flex;

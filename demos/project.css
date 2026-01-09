@@ -1,8 +1,17 @@
-#project-iframe {
-  border: 2px solid #14151D;
-}
-
 .project-display {
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 20px;
+  height: auto;
+  height: 700px;
+} 
 
+#project-iframe {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #14151D;
+  border-radius: 10px;
 }
