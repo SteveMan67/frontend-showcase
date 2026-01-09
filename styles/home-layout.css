@@ -116,7 +116,7 @@ body::after {
 
 .project::before {
   z-index: 1;
-  background: radial-gradient(200px circle at var(--mouse-projects-x) var(--mouse-projects-y), rgba(255, 255, 255, 0.2) 0%, transparent 100%)
+  background: radial-gradient(200px circle at var(--mouse-projects-x) var(--mouse-projects-y), rgba(255, 255, 255, 0.2) 0%, transparent 100%);
 }
 
 .project::after {
