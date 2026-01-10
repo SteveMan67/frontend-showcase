@@ -20,16 +20,15 @@ function updateProjects(projectJSON) {
     projectsGrid.innerHTML = projectsHTML
 }
 
-fetch('demos/projects.JSON')
+let projectsJSON = fetch('demos/projects.JSON')
   .then(response => response.json())
   .then(projects => {
     updateProjects(projects)
-    
+    projectsJSON = projects
   })
-  .then(projects => {
+  .then(() => {
     const projectContainer = document.getElementById("projects")
     const projectElements = document.querySelectorAll(".project")
-    
     let isUpdating = false
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX
@@ -37,7 +36,7 @@ fetch('demos/projects.JSON')
 
       if (!isUpdating) {
         requestAnimationFrame(() => {
-            for (let project of projectElements) {
+          for (let project of projectElements) {
             const rect = project.getBoundingClientRect()
             let boxX = mouseX - rect.x
             let boxY = mouseY - rect.y
@@ -51,6 +50,9 @@ fetch('demos/projects.JSON')
       }
     })
   })
+
+
+
 // filter hover effect 
 
 const filters = document.getElementById("sort-by")
@@ -58,7 +60,7 @@ const FilterButtons = document.querySelectorAll(".filter")
 const after = document.querySelector("#sort-by::after")
 
 for (let filter of FilterButtons) {
-  filter.addEventListener('mouseover', () => {
+  filter.addEventListener('mouseenter', () => {
     const filterRect = filter.getBoundingClientRect()
     const filtersRect = filters.getBoundingClientRect()
     console.log(filtersRect.left, filterRect.left)
@@ -76,3 +78,32 @@ filters.addEventListener('', (e) => {
 filters.addEventListener('mouseleave', () => {
   filters.style.setProperty("--opacity", `0%`)
 })
+
+let filter = "all"
+let filteredProjects = []
+
+function applyFilter(filter = "all") {
+  if (filter == "all") {
+    for (const project of projectsJSON) {
+      filteredProjects.push(project)
+    }
+  } else {
+    for (const project of projectsJSON) {
+      console.log(project.tags)
+      if (project.tags.includes(filter)) {
+        filteredProjects.push(project)
+      }
+    }
+  }
+  
+}
+
+let filterList = document.querySelectorAll(".filter")
+for (let filter of filterList) {
+  filter.addEventListener('click', () => {
+    filteredProjects = []
+    console.log(`filtering by '${filter.id}'`)
+    applyFilter(filter.id)
+    updateProjects(filteredProjects)
+  })
+}
