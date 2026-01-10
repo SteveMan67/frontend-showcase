@@ -29,3 +29,8 @@ nav h1 {
   font-family: "Google Sans Code" monospace;
   font-weight: 400;
 }
+
+a:nth-child(1) {
+  border: none;
+  padding: 0;
+}
