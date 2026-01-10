@@ -12,10 +12,12 @@ fetch('projects.JSON')
 
     if (jsonIndexOfProject !== -1) {
       iframe.src = projects[jsonIndexOfProject].path
-      }
+
+      const title = document.getElementById('title')
+      title.innerHTML = projects[jsonIndexOfProject].title
+    }
   })
   .then(projects => {
-    const title = document.getElementById('title')
     
   })
 

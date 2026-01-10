@@ -8,7 +8,7 @@ body {
 }
 .card {
   aspect-ratio: 5 / 6;
-  width: 100%;
+  width: 43%;
   border: 2px solid #14151D;
   border-radius: 10px;
   padding: 10px;
