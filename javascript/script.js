@@ -10,7 +10,7 @@ fetch('demos/projects.JSON')
 
     projectsHTML = projects.map(
       project => `
-      <div class="project" onclick="location.href='./demos/project.html?id=${project.id}'">
+      <a class="project" href="./demos/project.html?id=${project.id}">
         <div class="project-content">
           <img src="${project.img}" alt="${project.title}">
           <div id="description">
@@ -18,7 +18,7 @@ fetch('demos/projects.JSON')
             <p>${project.description}</p>
           </div>
         </div>
-      </div>
+      </a>
       `
     )
     .join("")
