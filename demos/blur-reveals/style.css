@@ -29,7 +29,7 @@ body {
   height: 100%;
 }
 
-.card img {
+.card img, .paint-blur canvas {
   aspect-ratio: 6 / 7;
   object-fit: cover;
   position: absolute;
@@ -39,7 +39,6 @@ body {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
-  width: 100%;
   transition: opacity 500ms ease;
 }
 
@@ -58,3 +57,11 @@ body {
 .no-blur {
   opacity: 0%;
 }
+
+.paint-blur canvas {
+  z-index: 2;
+  position: relative;
+  border-radius: 10px;
+  transition: opacity 500ms ease;
+}
+
