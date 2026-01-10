@@ -6,7 +6,11 @@ nav a {
   flex-direction: row;
   justify-items: left;
   width: fit-content;
-  margin-right: 10px;
+  height: fit-content;
+  margin-left: 10px;
+  font-family: "Google Sans Code", monospace;
+  font-size: 17px;
+  font-weight: 300;
 }
 
 nav {
@@ -15,5 +19,13 @@ nav {
   border-bottom: 2px solid #14151D;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
+  align-items: center;
+}
+
+nav h1 {
+  line-height: 0.5;
+  margin-left: 10px;
+  font-family: "Google Sans Code" monospace;
+  font-weight: 400;
 }

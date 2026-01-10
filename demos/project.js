@@ -5,7 +5,11 @@ fetch('projects.JSON')
     let iframe = document.getElementById("project-iframe")
     const title = document.getElementById("title")
     const description = document.getElementById("description")
-    const projectId = new URLSearchParams(window.location.search).get("id")
+    let projectId = new URLSearchParams(window.location.search).get("id")
+
+    if (projectId == "random") {
+      projectId = projects[Math.floor(Math.random() * projects.length)].id
+    }
 
     const jsonIndexOfProject = projects.findIndex(f => f.id == projectId)
     console.log(jsonIndexOfProject)
