@@ -37,10 +37,14 @@
 }
 
 .card:hover img {
-  opacity: var(--brightness)
+  filter: brightness(var(--brightness))
 }
 
 .card.inverted:hover {
   scale: 1.3;
   transform: rotateX(calc(var(--rotate-x) * -1)) rotateY(calc(var(--rotate-y) * -1))
+}
+
+.card h3 {
+  text-align: center;
 }

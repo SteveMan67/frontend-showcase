@@ -15,6 +15,6 @@
     "source": "https://store.steampowered.com",
     "path": "../demos/steam-hover/index.html",
     "tags": ["hover", "animations"],
-    "img": ""
+    "img": "../images/steam-hover.png"
   }
 ]
