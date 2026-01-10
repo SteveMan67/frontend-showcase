@@ -22,6 +22,7 @@ for (const card of cards) {
 
         card.style.setProperty("--rotate-x", `${rotateY}`)
         card.style.setProperty("--rotate-y", `${rotateX}`)
+        card.style.setProperty("--brightness", `${(percentageY * -50) + 100}%`) 
       })
     }
   })
