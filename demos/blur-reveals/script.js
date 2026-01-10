@@ -1,6 +1,5 @@
 const blurCard = document.querySelector(".wipe-blur")
 const radialBlur = document.querySelector(".radial-blur")
-console.log(blurCard)
 
 let isUpdating
 let mouseX, mouseY
@@ -24,3 +23,10 @@ document.addEventListener('mousemove', (e) => {
   radialBlur.style.setProperty("--box-x", `${radialBoxX}px`)
   radialBlur.style.setProperty("--box-y", `${radialBoxY}px`)
 })
+
+const blurs = document.querySelectorAll(".blur")
+for (const blurInstance of blurs) {
+  blurInstance.addEventListener('click', (e) => {
+      blurInstance.classList.toggle('no-blur')
+  })
+}

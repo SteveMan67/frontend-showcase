@@ -11,7 +11,6 @@
   box-sizing: border-box;
   width: 100%;
   min-height: 700px;
-  height: 100%;
   border: 2px solid #14151D;
   border-radius: 10px;
 }

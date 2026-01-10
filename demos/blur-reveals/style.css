@@ -3,17 +3,12 @@ body {
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 30px;
-  margin: 100px auto;
-  width: 40%;
-  min-width: 400px;
-  perspective: 1000px
+  display: flex;
+  flex-direction: row;
 }
 .card {
   aspect-ratio: 5 / 6;
+  width: 100%;
   border: 2px solid #14151D;
   border-radius: 10px;
   padding: 10px;
@@ -25,6 +20,7 @@ body {
   background-color: #060B0D;
   position: relative;
   padding: 10px;
+  margin: 20px;
 }
 
 .images {
@@ -44,6 +40,7 @@ body {
   height: auto;
   border-radius: 10px;
   width: 100%;
+  transition: opacity 500ms ease;
 }
 
 .wipe-blur {
@@ -56,4 +53,8 @@ body {
 
   /* mask-image: linear-gradient(to right, transparent var(--blur-start), black var(--blur-end)); */
   mask-image: radial-gradient(circle 150px at var(--box-x) var(--box-y), transparent 50%, black 100%);
+}
+
+.no-blur {
+  opacity: 0%;
 }
