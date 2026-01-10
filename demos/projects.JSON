@@ -5,7 +5,16 @@
     "description": "A very polished feeling hover effect.",
     "source": "https://codepen.io/Hyperplexed/pen/MWQeYLW?editors=0010",
     "path": "../demos/mouse-border-glow/index.html",
-    "type": "hover",
+    "tags": ["hover"],
     "img": "../images/mouse-border-glow.png"
+  },
+  {
+    "id": "steam-hover",
+    "title": "Steam Card",
+    "description": "The Steam trading card hover effect, recreated",
+    "source": "https://store.steampowered.com",
+    "path": "../demos/steam-hover/index.html",
+    "tags": ["hover", "animations"],
+    "img": ""
   }
 ]

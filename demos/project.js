@@ -14,4 +14,8 @@ fetch('projects.JSON')
       iframe.src = projects[jsonIndexOfProject].path
       }
   })
+  .then(projects => {
+    const title = document.getElementById('title')
+    
+  })
 

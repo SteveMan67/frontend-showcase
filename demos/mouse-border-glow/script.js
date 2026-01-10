@@ -3,14 +3,38 @@ console.log(cards)
 
 let mouseX, mouseY
 
-document.addEventListener('mousemove', (e) => {
+let cardRects
+function updateCardRects() {
+  cardRects = []
   for (let card of cards) {
-    const rect = card.getBoundingClientRect()
-    let boxX = e.clientX - rect.left
-    let boxY = e.clientY - rect.top
+    cardRects.push(card.getBoundingClientRect())
+  }
+}
+updateCardRects()
 
-    card.style.setProperty("--box-x", `${boxX}px`)
-    card.style.setProperty("--box-y", `${boxY}px`)
+window.addEventListener('resize', () => {
+  updateCardRects()
+})
+
+let isUpdating
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY
+
+  if (!isUpdating) {
+    requestAnimationFrame(() => {
+      cards.forEach((card, index) => {
+        const rect = cardRects[index]
+        let boxX = mouseX - rect.left
+        let boxY = mouseY - rect.top
+
+        card.style.setProperty("--box-x", `${boxX}px`)
+        card.style.setProperty("--box-y", `${boxY}px`)
+      })
+      isUpdating = false
+    })
+    isUpdating = true
   }
 })
 

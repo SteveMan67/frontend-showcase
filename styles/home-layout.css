@@ -41,7 +41,6 @@ body::after {
 #projects {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
   column-gap: 20px;
   row-gap: 20px;
   background-color: transparent;
@@ -69,6 +68,7 @@ body::after {
   border-radius: 10px;
   position: relative;
   max-width: 400px;
+  height: fit-content;
 }
 
 .project-content {
@@ -120,7 +120,7 @@ body::after {
 
 .project::before {
   z-index: 1;
-  background: radial-gradient(200px circle at var(--mouse-projects-x) var(--mouse-projects-y), rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.2) 0%, transparent 100%);
 }
 
 .project::after {
