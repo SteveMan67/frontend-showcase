@@ -12,16 +12,31 @@
   aspect-ratio: 5 / 6;
   border: 2px solid #14151D;
   border-radius: 10px;
+  padding: 10px;
   color: white;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #060B0D;
-  transition: 200ms ease;
+  transition: scale 500ms ease;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 11 / 12;
+  object-fit: cover;
 }
 
 .card:hover {
-  transform: scale(1.5) rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  scale: 1.3;
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
   perspective: 1000px;
   z-index: 1;
+}
+
+.card.inverted:hover {
+  scale: 1.3;
+  transform: rotateX(calc(var(--rotate-x) * -1)) rotateY(calc(var(--rotate-y) * -1))
 }

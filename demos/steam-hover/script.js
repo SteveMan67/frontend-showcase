@@ -17,8 +17,8 @@ for (const card of cards) {
         let percentageX = boxX / rect.width
         let percentageY = boxY / rect.height
 
-        let rotateX = `${(percentageX * 80) - 40}deg`
-        let rotateY = `${((percentageY * 80) - 40) * -1}deg`
+        let rotateX = `${(percentageX * 60) - 30}deg`
+        let rotateY = `${((percentageY * 60) - 30) * -1}deg`
 
         card.style.setProperty("--rotate-x", `${rotateY}`)
         card.style.setProperty("--rotate-y", `${rotateX}`)
