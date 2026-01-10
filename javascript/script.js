@@ -63,8 +63,6 @@ for (let filter of FilterButtons) {
   filter.addEventListener('mouseenter', () => {
     const filterRect = filter.getBoundingClientRect()
     const filtersRect = filters.getBoundingClientRect()
-    console.log(filtersRect.left, filterRect.left)
-    console.log(filterRect.left - filtersRect.left)
     filters.style.setProperty("--opacity", `100%`)
     filters.style.setProperty("--width", `${filter.clientWidth}px`)
     filters.style.setProperty("--x-offset", `${filterRect.left - filtersRect.left}px`)
@@ -89,7 +87,6 @@ function applyFilter(filter = "all") {
     }
   } else {
     for (const project of projectsJSON) {
-      console.log(project.tags)
       if (project.tags.includes(filter)) {
         filteredProjects.push(project)
       }
@@ -102,7 +99,6 @@ let filterList = document.querySelectorAll(".filter")
 for (let filter of filterList) {
   filter.addEventListener('click', () => {
     filteredProjects = []
-    console.log(`filtering by '${filter.id}'`)
     applyFilter(filter.id)
     updateProjects(filteredProjects)
   })
