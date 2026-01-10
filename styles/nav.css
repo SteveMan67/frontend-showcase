@@ -1,6 +1,6 @@
 nav a {
   border-radius: 10px;
-  border: 2px solid #14151D;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   padding: 10px 20px;
   display: flex;
   flex-direction: row;
@@ -16,7 +16,7 @@ nav a {
 nav {
   padding: 10px 0;
   width: 100%;
-  border-bottom: 2px solid #14151D;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: row;
   justify-content: left;

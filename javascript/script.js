@@ -1,21 +1,15 @@
-fetch('demos/projects.JSON')
-  .then(response => response.json())
-  .then(projects => {
-    const projectsGrid = document.getElementById('projects')
+function updateProjects(projectJSON) {
+  const projectsGrid = document.getElementById('projects')
     let projectsHTML;
-    
-    for(const project of projects) {
 
-    }
-
-    projectsHTML = projects.map(
-      project => `
-      <a class="project" href="./demos/project.html?id=${project.id}">
+    projectsHTML = projectJSON.map(
+      projectJSON => `
+      <a class="project" href="./demos/project.html?id=${projectJSON.id}">
         <div class="project-content">
-          <img src="${project.img}" alt="${project.title}">
+          <img src="${projectJSON.img}" alt="${projectJSON.title}">
           <div id="description">
-            <h4>${project.title}</h4>
-            <p>${project.description}</p>
+            <h4>${projectJSON.title}</h4>
+            <p>${projectJSON.description}</p>
           </div>
         </div>
       </a>
@@ -24,7 +18,12 @@ fetch('demos/projects.JSON')
     .join("")
 
     projectsGrid.innerHTML = projectsHTML
+}
 
+fetch('demos/projects.JSON')
+  .then(response => response.json())
+  .then(projects => {
+    updateProjects(projects)
     
   })
   .then(projects => {
@@ -52,3 +51,28 @@ fetch('demos/projects.JSON')
       }
     })
   })
+// filter hover effect 
+
+const filters = document.getElementById("sort-by")
+const FilterButtons = document.querySelectorAll(".filter")
+const after = document.querySelector("#sort-by::after")
+
+for (let filter of FilterButtons) {
+  filter.addEventListener('mouseover', () => {
+    const filterRect = filter.getBoundingClientRect()
+    const filtersRect = filters.getBoundingClientRect()
+    console.log(filtersRect.left, filterRect.left)
+    console.log(filterRect.left - filtersRect.left)
+    filters.style.setProperty("--opacity", `100%`)
+    filters.style.setProperty("--width", `${filter.clientWidth}px`)
+    filters.style.setProperty("--x-offset", `${filterRect.left - filtersRect.left}px`)
+  }) 
+}
+
+filters.addEventListener('', (e) => {
+  filters.style.setProperty("--width", `40px`)
+})
+
+filters.addEventListener('mouseleave', () => {
+  filters.style.setProperty("--opacity", `0%`)
+})
