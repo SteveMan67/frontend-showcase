@@ -6,15 +6,24 @@
     "source": "https://codepen.io/Hyperplexed/pen/MWQeYLW?editors=0010",
     "path": "../demos/mouse-border-glow/index.html",
     "tags": ["hover"],
-    "img": "../images/mouse-border-glow.png"
+    "img": "./images/mouse-border-glow.png"
   },
   {
     "id": "steam-hover",
     "title": "Steam Card",
-    "description": "The Steam trading card hover effect, recreated",
+    "description": "The Steam trading card hover effect, recreated.",
     "source": "https://store.steampowered.com",
     "path": "../demos/steam-hover/index.html",
     "tags": ["hover", "animations"],
-    "img": "../images/steam-hover.png"
+    "img": "./images/steam-hover.png"
+  },
+  {
+    "id": "blur-reveals",
+    "title": "Blur Reveals",
+    "description": "Different Blur Reveals.",
+    "source": "",
+    "path": "../demos/blur-reveals/index.html",
+    "tags": ["animations"],
+    "img": "./images/steam-hover.png"
   }
 ]

@@ -1,0 +1,58 @@
+body {
+  font-family: 'Heebo', sans-serif;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 30px;
+  margin: 100px auto;
+  width: 60%;
+  min-width: 400px;
+  perspective: 1000px
+}
+.card {
+  aspect-ratio: 5 / 6;
+  border: 2px solid #14151D;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #060B0D;
+  position: relative;
+  padding: 10px;
+}
+
+.images {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card img {
+  aspect-ratio: 6 / 7;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.wipe-blur {
+  filter: blur(10px);
+  mask-image: linear-gradient(to right, transparent var(--blur-start), black var(--blur-end));
+}
+
+.radial-blur {
+  filter: blur(10px);
+
+  /* mask-image: linear-gradient(to right, transparent var(--blur-start), black var(--blur-end)); */
+  mask-image: radial-gradient(circle 150px at var(--box-x) var(--box-y), transparent 50%, black 100%);
+}
