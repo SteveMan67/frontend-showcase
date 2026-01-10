@@ -1,0 +1,27 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 30px;
+  margin: 100px auto;
+  width: 50%;
+  min-width: 400px;
+  perspective: 1000px
+}
+.card {
+  aspect-ratio: 5 / 6;
+  border: 2px solid #14151D;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #060B0D;
+  transition: 200ms ease;
+}
+
+.card:hover {
+  transform: scale(1.5) rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  perspective: 1000px;
+  z-index: 1;
+}
