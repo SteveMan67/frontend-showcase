@@ -30,17 +30,26 @@ h1 {
   height: 100%;
 }
 
-@keyframes snow {
+@keyframes snowfall {
   0% {
-    transform: translateY(-10%);
+    transform: translateY(var(--start-y));
+    opacity: 100%
   }
-  50% {
-    transform: translateX(var(--x-movement)) translateY(110%)
+  100% {
+    transform: translateX(var(--x-movement)) translateY(110vh);
+    opacity: 100%;
   }
 }
 
 .snowflake {
+  opacity: 0%;
+  position: absolute;
+  top: 0;
+  transform: var(--start-y);
+  left: var(--offset-x);
   width: var(--snowflake-size);
-  background-color: rgba(255, 255, 255, 0.8);
-  animation: snow var(--animation-length) linear infinite;
+  height: var(--snowflake-size);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation: snowfall var(--animation-length) linear infinite;
 }
