@@ -33,6 +33,15 @@
     "source": "",
     "path": "../demos/gallery-auto-scroll/index.html",
     "tags": ["animations"],
+    "img": "./images/gallery-auto-scroll.png"
+  },
+  {
+    "id": "snow",
+    "title": "Snow",
+    "description": "Have some snow.",
+    "source": "flavortown.hackclub.com",
+    "path": "../demos/snow/index.html",
+    "tags": ["animations"],
     "img": "./images/steam-hover.png"
   }
 ]
