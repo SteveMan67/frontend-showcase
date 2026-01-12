@@ -8,6 +8,7 @@ nav a {
   width: fit-content;
   height: fit-content;
   margin-left: 10px;
+  margin-right: 10px;
   font-family: "Google Sans Code", monospace;
   font-size: 17px;
   font-weight: 300;
@@ -19,7 +20,7 @@ nav {
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
 }
 

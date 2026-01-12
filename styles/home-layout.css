@@ -54,7 +54,6 @@ body {
   max-width: 800px;
 }
 
-
 .project-content > div {
   color: white;
   min-width: 250px;
@@ -73,6 +72,8 @@ body {
 }
 
 .project {
+  break-inside: avoid;
+  width: 100%; 
   display: inline-block;
   margin-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.1);
