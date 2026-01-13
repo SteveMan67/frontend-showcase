@@ -1,12 +1,23 @@
-.grid-container {
+body {
+  position: relative;
+}
+
+.grids-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  padding: 100px 20%
+}
+
+.grid-container, .hitbox-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 5px;
-  margin: 100px auto;
-  width: 50%;
-  min-width: 400px;
+  width: 100%;
 }
+
 .card {
   aspect-ratio: 5 / 6;
   border: 2px solid #14151D;
@@ -19,6 +30,18 @@
   justify-content: center;
   background-color: #060B0D;
   transition: scale 500ms ease;
+  position: relative;
+  width: auto;
+  pointer-events: none;
+}
+
+.card-wrapper {
+  transition: scale 500ms ease;
+}
+
+.hitbox {
+  aspect-ratio: 5 / 6;
+  pointer-events: none;
 }
 
 .card img {
@@ -28,18 +51,22 @@
   object-fit: cover;
 }
 
-.card:hover {
+.card-wrapper:hover {
+  scale: 1;
+}
+
+.card-wrapper:hover .card {
   scale: 1.3;
   transform: perspective(500px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
   perspective-origin: center;
-  z-index: 1;
+  z-index: 4;
 }
 
-.card:hover img {
+.card-wrapper:hover img {
   filter: brightness(var(--brightness))
 }
 
-.card.inverted:hover {
+.card-wrapper:hover .card.inverted{
   scale: 1.3;
   transform: perspective(500px) rotateX(calc(var(--rotate-x) * -1)) rotateY(calc(var(--rotate-y) * -1))
 }

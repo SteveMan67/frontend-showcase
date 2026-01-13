@@ -1,16 +1,20 @@
 const cards = document.querySelectorAll(".card")
+const cardContainers = document.querySelectorAll('.card-wrapper')
+console.log(cardContainers)
 
-for (const card of cards) {
-
-  let isUpdating
+for (let i = 0; i < cards.length; i++) {
+  let card = cards[i]
+  let cardContainer = cardContainers[i]
+  let isUpdating = false
   let mouseX, mouseY
-  card.addEventListener('mousemove', (e) => {
+  
+  cardContainer.addEventListener('mousemove', (e) => {
     mouseX = e.clientX
     mouseY = e.clientY
-
-    if (!isUpdating) {
+    
+    if (!isUpdating) { 
       requestAnimationFrame(() => {
-        const rect = card.getBoundingClientRect()
+        const rect = cardContainer.getBoundingClientRect()
         let boxX = mouseX - rect.left
         let boxY = mouseY - rect.top
 
@@ -23,7 +27,11 @@ for (const card of cards) {
         card.style.setProperty("--rotate-x", `${rotateY}`)
         card.style.setProperty("--rotate-y", `${rotateX}`)
         card.style.setProperty("--brightness", `${(percentageY * -75) + 125}%`) 
-      })
+        isUpdating = false
+      }) 
+      isUpdating = true
     }
-  })
+
+
+  });
 }
