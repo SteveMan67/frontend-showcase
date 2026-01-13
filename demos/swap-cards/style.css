@@ -13,14 +13,13 @@
   display: flex;
   justify-content: center;
   height: 100vh;
-  width: 1000px;
 }
 
 .card {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  z-index: 2;
   padding: 15px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
@@ -29,13 +28,21 @@
 
 }
 
-.card.center-card {
+.card[data-position="right"] {
+  transform: translateX(calc(-50% - 500px)) scale(0.7);
+  z-index: 1;
 }
 
-.card:not(.center-card) {
-  transform: scale(0.7) translate(-50%, -50%);
+.card[data-position="left"] {
+  transform: translateX(calc(-50% + 500px)) scale(0.7);
+  z-index: 3;  
 }
+
+.card[data-position="center"] {
+  transform: translateX(-50%)
+}
+
 
 .card.card:not(.center-card) img {
-  filter: brightness(0.7) translate(-50%, -50%);
+  filter: brightness(0.6);
 }

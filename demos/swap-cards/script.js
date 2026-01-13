@@ -6,5 +6,6 @@ for (const card of cards) {
       subCard.classList.remove("center-card")
     }
     card.classList.add("center-card")
+    card.dataset.position = "center"
   })
 }
