@@ -19,7 +19,6 @@ for (let i = 0; i <= 30; i++) {
   snowflakes[i].style.setProperty("--start-y", `${offsetY}px`)
   // div.style.setProperty("--animation-delay", `${Math.floor(Math.random() * 15)}s`)
   snowContainer.appendChild(snowflakes[i])
-  console.log(`${animationLength}s`)
   setTimeout(() => {
     snowflakes[i].style.animation = 'none';
     snowflakes[i].offsetHeight

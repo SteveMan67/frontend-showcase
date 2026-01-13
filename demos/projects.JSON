@@ -43,5 +43,14 @@
     "path": "../demos/snow/index.html",
     "tags": ["animations"],
     "img": "./images/snow.png"
+  },
+  {
+    "id": "swap-card",
+    "title": "Swap Cards",
+    "description": "scroll through some cards. That sounds like fun.",
+    "source": "",
+    "path": "../demos/swap-cards/index.html",
+    "tags": ["animations"],
+    "img": "./images/snow.png"
   }
 ]

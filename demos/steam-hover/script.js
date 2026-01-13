@@ -11,13 +11,12 @@ for (let i = 0; i < cards.length; i++) {
   cardContainer.addEventListener('mousemove', (e) => {
     mouseX = e.clientX
     mouseY = e.clientY
-    
     if (!isUpdating) { 
       requestAnimationFrame(() => {
         const rect = cardContainer.getBoundingClientRect()
         let boxX = mouseX - rect.left
         let boxY = mouseY - rect.top
-
+        
         let percentageX = boxX / rect.width
         let percentageY = boxY / rect.height
 
