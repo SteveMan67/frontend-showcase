@@ -24,6 +24,7 @@ function createCard(left, card) {
 }
 
 function updateCardPositions(position) {
+  console.log(position)
   if (position == "left") {
     let swapCard
     for (let subcard of cards) {
@@ -67,5 +68,5 @@ for (const card of cards) {
   addClickListener(card, card.dataset.position)
 }
 
-addClickListener(rightbutton, "left")
-addClickListener(leftbutton, "right")
+addClickListener(rightbutton, "right")
+addClickListener(leftbutton, "left")
