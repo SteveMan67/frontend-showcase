@@ -1,11 +1,12 @@
 const cardContainer = document.querySelector(".cards")
-let cards = document.querySelectorAll(".card")
+let cards = document.querySelectorAll(".card:not(.removing)")
 let rightbutton = document.querySelector(".button-left")
 let leftbutton = document.querySelector(".button-right")
 
 function addClickListener(card, direction) {
-  card.addEventListener("click", () => {
-    cards = document.querySelectorAll(".card")
+  card.addEventListener("click", (e) => {
+    e.preventDefault()
+    cards = document.querySelectorAll(".card:not(.removing)")
     updateCardPositions(direction)
   })
 }
@@ -36,6 +37,7 @@ function updateCardPositions(position) {
     }
     createCard(true, swapCard)
     swapCard.style.transform = "translateX(calc(-50% + 1200px)) scale(0.7)"
+    swapCard.classList.add("removing")
 
     setTimeout(() => {
       swapCard.remove()
@@ -53,6 +55,7 @@ function updateCardPositions(position) {
     }
     createCard(false, swapCard)
     swapCard.style.transform = "translateX(calc(-50% - 1200px)) scale(0.7)" 
+    swapCard.classList.add("removing")
 
     setTimeout(() => {
       swapCard.remove()
