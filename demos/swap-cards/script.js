@@ -14,19 +14,42 @@ cardContainer.addEventListener("touchmove", (e) => {
 
   cards.forEach(card => {
     if (card.dataset.position == "center") {
-      card.style.transform = `translateX(calc(-50% + ${diff}px)) scale(1)`
+      let scale 
+      if (Math.abs(diff) < 500) {
+        if (diff < 0) {
+          scale = (((0.4 / 500) * diff) + 1)
+        } else {
+          scale = (((0.4 / 500) * diff * -1) + 1)
+        }
+      } else {
+        scale = 0.6
+      }
+      card.style.transform = `translateX(calc(-50% + ${diff}px)) scale(${scale})`
     } else if (card.dataset.position == "left") {
       let scale
-      if (Math.abs(diff) < 500) {
-        scale = ((0.4 / 500) * math.abs(diff)) + 0.6
+      if (diff > 0 && diff < 1000) {
+        if (diff < 500) {
+          scale = (((0.4 / 500) * diff) + 0.6)
+        } else {
+          scale = 1 - (((0.4 / 500) * diff) - 0.4)
+        }
+        
       } else {
         scale = 0.6
       }
       card.style.transform = `translateX(calc(-50% - 500px + ${diff}px)) scale(${scale})`
-
-      console.log(card.style.transform)
     } else if (card.dataset.position == "right") {
-      card.style.transform = `translateX(calc(-50% + 500px + ${diff}px)) scale(0.6)`
+      let scale 
+      if (diff < 0 && diff > -1000) {
+        if (diff > -500) {
+          scale = 0.6 - (((0.4 / 500) * diff))
+        } else {
+          scale = 1 - (((0.4 / 500) * ((diff + 500) * -1)))
+        }
+      } else {
+        scale = 0.6
+      }
+      card.style.transform = `translateX(calc(-50% + 500px + ${diff}px)) scale(${scale})`
     }
   })
 })
@@ -40,7 +63,6 @@ cardContainer.addEventListener("touchstart", (e) => {
 
 cardContainer.addEventListener("touchend", (e) => {
   touchend = e.changedTouches[0].clientX;
-  console.log(touchstart, touchend)
   cards = document.querySelectorAll(".card:not(.removing)")
   cards.forEach(card => {
     card.style.transition = ''
@@ -73,7 +95,6 @@ function createCard(left, card) {
 }
 
 function updateCardPositions(position) {
-  console.log(position)
   if (position == "left") {
     let swapCard;
     for (let subcard of cards) {
@@ -117,5 +138,5 @@ for (const card of cards) {
   addClickListener(card, card.dataset.position);
 }
 
-addClickListener(rightbutton, "right");
-addClickListener(leftbutton, "left");
+addClickListener(rightbutton, "left")
+addClickListener(leftbutton, "right")
