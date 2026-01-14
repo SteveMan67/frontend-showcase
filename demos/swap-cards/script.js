@@ -5,29 +5,49 @@ let leftbutton = document.querySelector(".button-right");
 const body = document.querySelector("body")
 let touchstart, touchend;
 
-body.addEventListener("touchmove", (e) => {
-  e.preventDefault()
-})
+let diff
 
 cardContainer.addEventListener("touchmove", (e) => {
   e.preventDefault()
+  const currentX = e.touches[0].clientX;
+  diff = currentX - touchstart
+
+  cards.forEach(card => {
+    if (card.dataset.position == "center") {
+      card.style.transform = `translateX(calc(-50% + ${diff}px)) scale(1)`
+    } else if (card.dataset.position == "left") {
+      let scale
+      if (Math.abs(diff) < 500) {
+        scale = ((0.4 / 500) * math.abs(diff)) + 0.6
+      } else {
+        scale = 0.6
+      }
+      card.style.transform = `translateX(calc(-50% - 500px + ${diff}px)) scale(${scale})`
+
+      console.log(card.style.transform)
+    } else if (card.dataset.position == "right") {
+      card.style.transform = `translateX(calc(-50% + 500px + ${diff}px)) scale(0.6)`
+    }
+  })
 })
 
 cardContainer.addEventListener("touchstart", (e) => {
   touchstart = e.touches[0].clientX;
+  touchStartTime = Date.now()
+  cards = document.querySelectorAll(".card:not(.removing)")
+  cards.forEach(card => card.style.transition = "none")
 });
 
 cardContainer.addEventListener("touchend", (e) => {
   touchend = e.changedTouches[0].clientX;
   console.log(touchstart, touchend)
-  if (touchend > touchstart + 50) {
-    // swiped left
-    cards = document.querySelectorAll(".card:not(.removing)")
-    updateCardPositions("left")
-  } else if (touchend < touchstart - 50) {
-    // swiped right
-    cards = document.querySelectorAll(".card:not(.removing)")
-    updateCardPositions("right")
+  cards = document.querySelectorAll(".card:not(.removing)")
+  cards.forEach(card => {
+    card.style.transition = ''
+    card.style.transform = ''
+  })
+  if (Math.abs(diff) > 50) {
+    updateCardPositions(diff > 0 ? "left" : "right")
   }
 });
 
@@ -45,7 +65,6 @@ function createCard(left, card) {
     ? "translateX(calc(-50% - 1200px)) scale(0.7)"
     : "translateX(calc(-50% + 1200px)) scale(0.7)";
   newCard.dataset.position = left ? "left" : "right";
-  addClickListener(newCard, newCard.dataset.position);
   cardContainer.appendChild(newCard);
 
   setTimeout(() => {
