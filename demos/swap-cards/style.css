@@ -12,6 +12,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 
@@ -24,25 +25,61 @@
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   margin: 10px;
-  transition: 300ms ease;
+  transition: 1000ms ease;
 
-}
-
-.card[data-position="right"] {
-  transform: translateX(calc(-50% - 500px)) scale(0.7);
-  z-index: 1;
 }
 
 .card[data-position="left"] {
-  transform: translateX(calc(-50% + 500px)) scale(0.7);
+  transform: translateX(calc(-50% - 500px)) scale(0.6);
+  z-index: 1;
+  filter: brightness(0.6);
+}
+
+.card[data-position="right"] {
+  transform: translateX(calc(-50% + 500px)) scale(0.6);
   z-index: 3;  
+  filter: brightness(0.6);
 }
 
 .card[data-position="center"] {
-  transform: translateX(-50%)
+  transform: translateX(-50%);
+  filter: brightness(1)
 }
 
+.control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #eeae36;
+  color: black;
+  font-size: 17px;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
 
-.card.card:not(.center-card) img {
-  filter: brightness(0.6);
+.button-right {
+  transform: translateX(calc(-50% - 400px)) translateY(40vh);
+}
+
+.button-left {
+  transform: translateX(calc(-50% + 420px)) translateY(40vh);
+}
+
+.control img {
+  height: 30px;
+  width: 30px;
+}
+
+.left-button {
+  transform: translateX(-3px)
+}
+
+.right-button {
+  transform: translateX(2px);
 }
