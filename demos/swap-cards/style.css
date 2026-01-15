@@ -41,14 +41,20 @@ html {
 }
 
 .card[data-position="right"] {
+  opacity: 1;
   transform: translateX(calc(-50% + 500px)) scale(0.6);
   z-index: 3;  
   filter: brightness(0.3);
 }
 
 .card[data-position="center"] {
+  opacity: 1;
   transform: translateX(-50%);
   filter: brightness(1)
+}
+
+.card[data-position="hidden"] {
+  opacity: 0;
 }
 
 .control {
