@@ -48,7 +48,7 @@ function touchMoveLogic(clientX) {
         scale = 0.6
       }
 
-      card.style.transform = `translateX(calc(-50% + ${diff}px)) scale(${scale})`
+      card.style.transform = `translateX(calc(-50% + ${diff}px)) translateY(-50%) scale(${scale})`
     
     } else if (card.dataset.position == "left") {
       let scale
@@ -62,7 +62,7 @@ function touchMoveLogic(clientX) {
       } else {
         scale = 0.6
       }
-      card.style.transform = `translateX(calc(-50% - 500px + ${diff}px)) scale(${scale})`
+      card.style.transform = `translateX(calc(-50% - 500px + ${diff}px)) translateY(-50%) scale(${scale})`
     } else if (card.dataset.position == "right") {
       let scale 
       if (diff < 0 && diff > -1000) {
@@ -74,7 +74,7 @@ function touchMoveLogic(clientX) {
       } else {
         scale = 0.6
       }
-      card.style.transform = `translateX(calc(-50% + 500px + ${diff}px)) scale(${scale})`
+      card.style.transform = `translateX(calc(-50% + 500px + ${diff}px)) translateY(-50%) scale(${scale})`
     }
   })
 
@@ -167,12 +167,12 @@ function addCard(left, card, oldCard) {
   card.style.transition = "none"
   card.dataset.position = left ? "left" : "right"
   card.style.transform = left
-    ? "translateX(calc(-50% - 1200px)) scale(0.7)"
-    : "translateX(calc(-50% + 1200px)) scale(0.7)";
-  oldCard.style.transform = left ? "translateX(calc(-50% + 1200px)) scale(0.7)" : "translateX(calc(-50% - 1200px)) scale(0.7)"
+    ? "translateX(calc(-50% - 1200px)) translateY(-50%) scale(0.7)"
+    : "translateX(calc(-50% + 1200px)) translateY(-50%) scale(0.7)";
+  oldCard.style.transform = left ? "translateX(calc(-50% + 1200px)) translateY(-50%) scale(0.7)" : "translateX(calc(-50% - 1200px)) translateY(-50%) scale(0.7)"
   void card.offsetWidth
   card.style.transition = ""
-  setTimeout(() => {
+  setTimeout(() => { 
     card.style.removeProperty("transform");
   }, 10);
 }

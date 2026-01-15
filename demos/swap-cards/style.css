@@ -23,7 +23,7 @@ html {
 
 .card {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
   z-index: 2;
   padding: 15px;
@@ -35,21 +35,21 @@ html {
 }
 
 .card[data-position="left"] {
-  transform: translateX(calc(-50% - 500px)) scale(0.6);
+  transform: translateX(calc(-50% - 500px)) translateY(-50%) scale(0.6);
   z-index: 1;
   filter: brightness(0.3);
 }
 
 .card[data-position="right"] {
   opacity: 1;
-  transform: translateX(calc(-50% + 500px)) scale(0.6);
+  transform: translateX(calc(-50% + 500px)) translateY(-50%) scale(0.6);
   z-index: 3;  
   filter: brightness(0.3);
 }
 
 .card[data-position="center"] {
   opacity: 1;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
   filter: brightness(1)
 }
 
