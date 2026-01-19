@@ -54,11 +54,11 @@
     "img": "./images/swap-cards.png"
   },
   {
-    "id": "swap-demos-card",
-    "title": "Swap Demos Card",
+    "id": "swap-order-card",
+    "title": "Swap Order Card",
     "description": "Drag and drop to change the order.",
     "source": "",
-    "path": "../demos/swap-demos-card/index.html",
+    "path": "../demos/swap-order-cards/index.html",
     "tags": ["misc"],
     "img": "./images/swap-cards.png"
   }

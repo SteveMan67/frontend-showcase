@@ -11,7 +11,6 @@ let visibleCards = []
 let cardImages = ["https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2F0fGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhdHxlbnwwfHwwfHx8MA%3D%3D", "https://images.unsplash.com/photo-1571566882372-1598d88abd90?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNhdHxlbnwwfHwwfHx8MA%3D%3D", "https://images.unsplash.com/photo-1511044568932-338cba0ad803?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNhdHxlbnwwfHwwfHx8MA%3D%3D"]
 let cardList = []
 for (card in cardImages) {
-  console.log(card)
   let div = document.createElement("div")
   div.classList.add("card")
   div.innerHTML = `<img src="${cardImages[card]}">`
@@ -30,14 +29,13 @@ for (card in cardImages) {
   cardContainer.appendChild(div)
   cardList.push(div)
 }
-console.log(cardList)
 
 function touchMoveLogic(clientX) {
   const currentX = clientX
   diff = currentX - touchstart
   cards.forEach(card => {
+    let scale;
     if (card.dataset.position == "center") {
-      let scale 
       if (Math.abs(diff) < 500) {
         if (diff < 0) {
           scale = (((0.4 / 500) * diff) + 1)
@@ -48,10 +46,8 @@ function touchMoveLogic(clientX) {
         scale = 0.6
       }
 
-      card.style.transform = `translateX(calc(-50% + ${diff}px)) translateY(-50%) scale(${scale})`
-    
+      
     } else if (card.dataset.position == "left") {
-      let scale
       if (diff > 0 && diff < 1000) {
         if (diff < 500) {
           scale = (((0.4 / 500) * diff) + 0.6)
@@ -62,9 +58,7 @@ function touchMoveLogic(clientX) {
       } else {
         scale = 0.6
       }
-      card.style.transform = `translateX(calc(-50% - 500px + ${diff}px)) translateY(-50%) scale(${scale})`
     } else if (card.dataset.position == "right") {
-      let scale 
       if (diff < 0 && diff > -1000) {
         if (diff > -500) {
           scale = 0.6 - (((0.4 / 500) * diff))
@@ -74,8 +68,11 @@ function touchMoveLogic(clientX) {
       } else {
         scale = 0.6
       }
-      card.style.transform = `translateX(calc(-50% + 500px + ${diff}px)) translateY(-50%) scale(${scale})`
+    } else {
+      scale = 0.6
     }
+    card.style.setProperty("--drag", `${diff}px`)
+    card.style.setProperty("--scale", scale.toString())
   })
 
   // add new cards and remove old ones
@@ -88,46 +85,58 @@ function touchStartLogic(clientX) {
   cards.forEach(card => card.style.transition = "none")
 }
 
-function touchEndLogic (clientX) {
+function touchEndLogic(clientX) {
   touchend = clientX;
   cards = document.querySelectorAll(".card:not(.removing)")
   cards.forEach(card => {
     card.style.transition = ''
     card.style.transform = ''
   })
+  cards.forEach(card => {
+    card.style.removeProperty("--drag");
+    card.style.removeProperty("--scale")
+  })
   if (Math.abs(diff) > 50) {
     updateCardPositions(diff > 0 ? "left" : "right")
+  } else {
+    
+    updateCardPositions()
   }
 }
 
-cardContainer.addEventListener("touchmove", (e) => {
-  e.preventDefault()
-  touchMoveLogic(e.touches[0].clientX)
-})
+const cardElements = document.querySelectorAll(".card")
 
-cardContainer.addEventListener("mousemove", (e) => {
-  if (mouseDown) {
-    touchMoveLogic(e.clientX)
-  }
-})
+cardElements.forEach(card => {
+  card.addEventListener("touchmove", (e) => {
+    e.preventDefault()
+    touchMoveLogic(e.touches[0].clientX)
+  })
+  
+  card.addEventListener("mousemove", (e) => {
+    if (mouseDown) {
+      touchMoveLogic(e.clientX)
+    }
+  })
+  
+  card.addEventListener("touchstart", (e) => {
+    touchStartLogic(e.touches[0].clientX)
+  });
+  
+  card.addEventListener("mousedown", (e) => {
+    e.preventDefault()
+    mouseDown = true
+    touchStartLogic(e.clientX)
+  })
+  
+  card.addEventListener("touchend", (e) => {
+    touchEndLogic(e.changedTouches[0].clientX)
+  });
+  
+  card.addEventListener("mouseup", (e) => {
+    mouseDown = false
+    touchEndLogic(e.clientX)
+  })
 
-cardContainer.addEventListener("touchstart", (e) => {
-  touchStartLogic(e.touches[0].clientX)
-});
-
-cardContainer.addEventListener("mousedown", (e) => {
-  e.preventDefault()
-  mouseDown = true
-  touchStartLogic(e.clientX)
-})
-
-cardContainer.addEventListener("touchend", (e) => {
-  touchEndLogic(e.changedTouches[0].clientX)
-});
-
-cardContainer.addEventListener("mouseup", (e) => {
-  mouseDown = false
-  touchEndLogic(e.clientX)
 })
 
 function findNextCard(left, card) {
@@ -156,6 +165,18 @@ function addClickListener(card, direction) {
   });
 }
 
+document.addEventListener("keydown", (e) => {
+  console.log(e.key)
+  if (e.key = "ArrowRight") {
+    console.log(e.key)
+    updateCardPositions("left")
+  } else if (e.key = "ArrowLeft") {
+    console.log(e.key)
+    updateCardPositions("right")
+  }
+})
+
+
 function addCard(left, card, oldCard) {
   if (left) {
     visibleCards.unshift(card)
@@ -178,6 +199,7 @@ function addCard(left, card, oldCard) {
 }
 
 function updateCardPositions(position) {
+  console.log(position)
   if (position == "left") {
     let newCard;
     let removedCard
@@ -211,10 +233,6 @@ function updateCardPositions(position) {
     }
     addCard(false, newCard, removedCard);
   }
-}
-
-for (const card of cards) {
-  addClickListener(card, card.dataset.position);
 }
 
 addClickListener(rightbutton, "left")
