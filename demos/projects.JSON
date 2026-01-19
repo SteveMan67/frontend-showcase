@@ -52,5 +52,14 @@
     "path": "../demos/swap-cards/index.html",
     "tags": ["animations"],
     "img": "./images/swap-cards.png"
+  },
+  {
+    "id": "swap-demos-card",
+    "title": "Swap Demos Card",
+    "description": "Drag and drop to change the order.",
+    "source": "",
+    "path": "../demos/swap-demos-card/index.html",
+    "tags": ["misc"],
+    "img": "./images/swap-cards.png"
   }
 ]

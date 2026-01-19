@@ -1,0 +1,58 @@
+body {
+  font-family: monospace;
+  box-sizing: border-box;
+  position: relative;
+}
+
+::after, ::before {
+  box-sizing: border-box;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: fit-content;
+  justify-self: center;
+}
+
+.dragging {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dragging .card {
+  pointer-events: all;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  aspect-ratio: 5 / 6;
+  width: 200px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  object-fit: cover;
+  user-select: none;
+  background-color: #060B0D;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.selected-area {
+  background: rgba(17, 9, 179, 0.257);
+  border: 4px dashed #0b3baa;
+  border-radius: 10px;
+  aspect-ratio: 5 / 6;
+  width: 200px;
+  display: none;
+}
