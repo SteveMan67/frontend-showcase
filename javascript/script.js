@@ -1,3 +1,26 @@
+function eventListener() {
+  isUpdating = false
+  projectElements = document.querySelectorAll('.project')
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX
+    mouseY = e.clientY
+
+    if (!isUpdating) {
+      requestAnimationFrame(() => {
+        for (let project of projectElements) {
+          const rect = project.getBoundingClientRect()
+          let boxX = mouseX - rect.x
+          let boxY = mouseY - rect.y
+          project.style.setProperty("--mouse-x", `${boxX}px`)
+          project.style.setProperty("--mouse-y", `${boxY}px`)
+        }
+        isUpdating = false
+      })
+      isUpdating = true
+    }
+  })
+}
+
 function updateProjects(projectJSON) {
   const projectsGrid = document.getElementById('projects')
     let projectsHTML;
@@ -20,6 +43,8 @@ function updateProjects(projectJSON) {
     projectsGrid.innerHTML = projectsHTML
 }
 
+let one = false
+
 let projectsJSON = fetch('demos/projects.JSON')
   .then(response => response.json())
   .then(projects => {
@@ -28,27 +53,8 @@ let projectsJSON = fetch('demos/projects.JSON')
   })
   .then(() => {
     const projectContainer = document.getElementById("projects")
-    const projectElements = document.querySelectorAll(".project")
     let isUpdating = false
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
-
-      if (!isUpdating) {
-        requestAnimationFrame(() => {
-          for (let project of projectElements) {
-            const rect = project.getBoundingClientRect()
-            let boxX = mouseX - rect.x
-            let boxY = mouseY - rect.y
-
-            project.style.setProperty("--mouse-x", `${boxX}px`)
-            project.style.setProperty("--mouse-y", `${boxY}px`)
-          }
-          isUpdating = false
-        })
-        isUpdating = true
-      }
-    })
+    eventListener(isUpdating)
   })
 
 
@@ -69,10 +75,6 @@ for (let filter of FilterButtons) {
   }) 
 }
 
-filters.addEventListener('', (e) => {
-  filters.style.setProperty("--width", `40px`)
-})
-
 filters.addEventListener('mouseleave', () => {
   filters.style.setProperty("--opacity", `0%`)
 })
@@ -92,7 +94,6 @@ function applyFilter(filter = "all") {
       }
     }
   }
-  
 }
 
 let filterList = document.querySelectorAll(".filter")
@@ -101,5 +102,6 @@ for (let filter of filterList) {
     filteredProjects = []
     applyFilter(filter.id)
     updateProjects(filteredProjects)
+    eventListener()
   })
 }
