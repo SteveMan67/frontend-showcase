@@ -1,9 +1,29 @@
+let clientX, clientY
+
 function eventListener() {
   isUpdating = false
   projectElements = document.querySelectorAll('.project')
   document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
+    clientX = e.clientX
+    clientY = e.clientY
+
+    if (!isUpdating) {
+      requestAnimationFrame(() => {
+        for (let project of projectElements) {
+          const rect = project.getBoundingClientRect()
+          let boxX = clientX - rect.x
+          let boxY = clientY - rect.y
+          project.style.setProperty("--mouse-x", `${boxX}px`)
+          project.style.setProperty("--mouse-y", `${boxY}px`)
+        }
+        isUpdating = false
+      })
+      isUpdating = true
+    }
+  })
+  document.addEventListener('scroll', (e) => {
+    mouseX = clientX
+    mouseY = clientY
 
     if (!isUpdating) {
       requestAnimationFrame(() => {
