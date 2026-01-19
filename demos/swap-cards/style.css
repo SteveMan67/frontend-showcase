@@ -1,6 +1,11 @@
+html {
+  scrollbar-width: none;
+}
+
 .body {
   height: 100vh;   
   overflow-x: hidden; 
+  scrollbar-width: 0;
 }
 
 html {

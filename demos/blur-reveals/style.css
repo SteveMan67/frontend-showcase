@@ -1,5 +1,10 @@
+html {
+  scrollbar-width: none;
+}
+
 body {
   font-family: 'Heebo', sans-serif;
+  scrollbar-width: 0;
 }
 
 .grid-container {

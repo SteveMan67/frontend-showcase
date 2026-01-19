@@ -2,6 +2,7 @@ body {
   font-family: monospace;
   box-sizing: border-box;
   position: relative;
+  scrollbar-width: 0;
 }
 
 ::after, ::before {
