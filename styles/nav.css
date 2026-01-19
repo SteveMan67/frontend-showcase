@@ -27,7 +27,7 @@ nav {
 nav h1 {
   line-height: 0.5;
   margin-left: 10px;
-  font-family: "Google Sans Code" monospace;
+  font-family: "Google Sans Code", monospace;
   font-weight: 400;
 }
 

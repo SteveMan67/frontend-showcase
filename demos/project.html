@@ -16,17 +16,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e876f1963b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <nav>
-    <a href="../index.html"><h1>frontend.</h1></a>
-    <a href="project.html?id=random">Random</a>
-  </nav>
-  <div class="project-display">
+  <div class="main-content">
+    <nav>
+      <a href="../index.html"><h1>frontend.</h1></a>
+      <a href="project.html?id=random">Random</a>
+    </nav>
     <div class="project-info">
       <h1 id="title">Mouse Border Glow</h1>
+      <p class="seperator">-</p>
       <p id="description"></p>
     </div>
-    <iframe id="project-iframe" src=""></iframe>
+    <div class="iframe-container">
+      <iframe class="project-iframe" src=""></iframe>
+      <div class="fullscreen-control">
+        <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+      </div>
+    </div>
   </div>
 </body>
