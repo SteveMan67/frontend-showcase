@@ -37,6 +37,7 @@ body {
   object-fit: cover;
   user-select: none;
   background-color: #060B0D;
+  box-sizing: border-box;
 }
 
 .card img {
@@ -51,6 +52,7 @@ body {
 .selected-area {
   background: rgba(17, 9, 179, 0.257);
   border: 4px dashed #0b3baa;
+  box-sizing: border-box;
   border-radius: 10px;
   aspect-ratio: 5 / 6;
   width: 200px;

@@ -1,14 +1,19 @@
 const cardContainer = document.querySelector(".card-container")
 const dragContainer = document.querySelector(".dragging")
-const selectedContainer = document.querySelector(".selected-area")
+const placeholder = document.querySelector(".selected-area")
 let cards = document.querySelectorAll(".card")
 let mouseDown = false
 let offsetX, offsetY
 let isUpdating
 let dragCard = null
 
-function insertAt(card, index) {
-  const ref = cardContainer.children[index] || null
+function insertAtPlaceholder(card, index) {
+  const ref = Array.from(cardContainer.querySelectorAll('.card, .selected-area'))[index]
+  cardContainer.insertBefore(card, ref)
+}
+
+function insertBefore(card, index) {
+  const ref = Array.from(cardContainer.querySelectorAll('.card'))[index] || null
   cardContainer.insertBefore(card, ref)
 }
 
@@ -21,8 +26,8 @@ cards.forEach(card => {
     offsetY = e.offsetY
     card.classList.add("dragging-card")
     card.style.transform = `translateX(${e.clientX - offsetX}px) translateY(${e.clientY - offsetY}px)`
-    insertAt(selectedContainer, Array.from(cardContainer.querySelectorAll('.card')).indexOf(card))
-    selectedContainer.style.display = "block"
+    insertBefore(placeholder, Array.from(cardContainer.querySelectorAll('.card, .selected-area')).indexOf(card))
+    placeholder.style.display = "block"
     dragContainer.appendChild(card)
     dragCard = card
   })
@@ -40,10 +45,13 @@ cards.forEach(card => {
         })
         isUpdating = true
       }
-      if (card.contains(e.target)) {
-        // move the target selector to the current position
-        insertAt(selectedContainer, Array.from(cardContainer.querySelectorAll('.card')).indexOf(card))
-        console.log(Array.from(cardContainer.querySelectorAll('.card')).indexOf(card))
+      cards = document.querySelectorAll('.card')
+      const elementsUnderMouse = document.elementsFromPoint(e.clientX, e.clientY)
+      const element = elementsUnderMouse.find(element => element.matches('.card:not(.dragging-card), .selected-area'))
+      const index = Array.from(document.querySelectorAll('.card:not(.dragging-card), .selected-area')).indexOf(element)
+      if (index !== -1) {
+        console.log(index)
+        insertBefore(placeholder, index)
       }
     } else {
       card.style.transform = '';
@@ -55,16 +63,13 @@ cards.forEach(card => {
 document.addEventListener('mouseup', () => {
   mouseDown = false
   const draggingCards = document.querySelectorAll(".dragging-card")
-  cards = document.querySelectorAll(".card")
-  cards.forEach(card => {
-    card.style.transform = ''
-  })
+  cards = document.querySelectorAll(".card, .selected-area")
+  console.log(cards)
   draggingCards.forEach(card => {
-    cardContainer.appendChild(card)
-    card.style.transform = ''
-    card.classList.remove("dragging-card")
+    insertAtPlaceholder(dragCard, Array.from(cards).indexOf(placeholder))
+    dragCard.style.transform = ''
+    dragCard.classList.remove("dragging-card")
   })
-  selectedContainer.style.display = "none"
-  cardContainer.append(selectedContainer)
+  placeholder.style.display = "none"
   dragCard = null
 })
