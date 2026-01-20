@@ -61,5 +61,14 @@
     "path": "../demos/swap-order-cards/index.html",
     "tags": ["misc"],
     "img": "./images/swap-order-cards.png"
+  },
+  {
+    "id": "comic-book-menu",
+    "title": "Comic Book Menu",
+    "description": "Comic book menu with CSS grid",
+    "source": "",
+    "path": "../demos/comic-book-menu/index.html",
+    "tags": ["misc", "animations"],
+    "img": "./images/swap-order-cards.png"
   }
 ]
