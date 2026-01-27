@@ -235,5 +235,5 @@ function updateCardPositions(position) {
   }
 }
 
-addClickListener(rightbutton, "left")
-addClickListener(leftbutton, "right")
+addClickListener(rightbutton, "right")
+addClickListener(leftbutton, "left")
